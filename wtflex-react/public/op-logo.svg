@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OP FLEX — primary brand mark.
+  240×240 square. Survives circle-crop (Instagram, Discord, etc.) because
+  the content is centred and the background fills the whole canvas.
+
+  Anton (Google Fonts) is preferred; Impact / Arial Black are universal
+  fallbacks so the same SVG renders cleanly even when converted to PNG
+  by tools that can't fetch web fonts.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&amp;display=swap');
+      .op-mark { font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue Condensed', sans-serif; font-weight: 900; }
+    </style>
+  </defs>
+
+  <!-- Black rounded square -->
+  <rect width="240" height="240" rx="40" fill="#0a0a0a"/>
+
+  <!-- Thin yellow inset border for the polished badge feel -->
+  <rect x="8" y="8" width="224" height="224" rx="32" fill="none" stroke="#ffd60a" stroke-width="2" stroke-opacity="0.35"/>
+
+  <!-- OP wordmark -->
+  <text x="120" y="170" class="op-mark"
+        font-size="160"
+        letter-spacing="-4"
+        fill="#ffd60a"
+        text-anchor="middle">OP</text>
+
+  <!-- Star accent under the wordmark -->
+  <text x="120" y="208" class="op-mark"
+        font-size="22"
+        letter-spacing="6"
+        fill="#ffd60a"
+        text-anchor="middle">★ FLEX ★</text>
+</svg>

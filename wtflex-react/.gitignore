@@ -1,0 +1,23 @@
+node_modules
+dist
+dist-ssr
+*.local
+
+# Synced assets/data — generated at build time via `npm run sync`
+# Never commit these; the CI workflow downloads them fresh on every deploy.
+public/assets/
+public/data/
+
+# Local env — keys live in GitHub Actions secrets for prod
+.env
+.env.*.local
+
+# Editor / OS noise
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Horizontal lockup. Drop this in your Instagram bio link, banner,
+     header art, or wherever you need a wider, headline-style mark. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&amp;display=swap');
+      .op-mark { font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue Condensed', sans-serif; font-weight: 900; }
+    </style>
+  </defs>
+
+  <rect width="720" height="200" rx="32" fill="#0a0a0a"/>
+
+  <!-- Big "OP FLEX" -->
+  <text x="360" y="135" class="op-mark"
+        font-size="120"
+        letter-spacing="-2"
+        fill="#ffd60a"
+        text-anchor="middle">OP FLEX</text>
+
+  <!-- Tagline underneath -->
+  <text x="360" y="170" class="op-mark"
+        font-size="16"
+        letter-spacing="6"
+        fill="#ffd60a"
+        text-anchor="middle">★ FLEX DIFFERENT ★ WEAR BOLDER ★</text>
+</svg>

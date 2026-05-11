@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Inverted variant — yellow ground, black OP. Use on dark layouts, in
+     Stories backgrounds, or as a sticker. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&amp;display=swap');
+      .op-mark { font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue Condensed', sans-serif; font-weight: 900; }
+    </style>
+  </defs>
+
+  <rect width="240" height="240" rx="40" fill="#ffd60a"/>
+  <rect x="8" y="8" width="224" height="224" rx="32" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-opacity="0.4"/>
+
+  <text x="120" y="170" class="op-mark"
+        font-size="160"
+        letter-spacing="-4"
+        fill="#0a0a0a"
+        text-anchor="middle">OP</text>
+
+  <text x="120" y="208" class="op-mark"
+        font-size="22"
+        letter-spacing="6"
+        fill="#0a0a0a"
+        text-anchor="middle">★ FLEX ★</text>
+</svg>
