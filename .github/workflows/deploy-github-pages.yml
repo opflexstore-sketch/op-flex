@@ -36,8 +36,16 @@ jobs:
         working-directory: wtflex-react
         run: npm run sync
 
-      - name: Log VITE_ADMIN_EMAIL
-        run: echo "VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}"
+      - name: Check VITE_ADMIN_EMAIL exists
+        working-directory: wtflex-react
+        env:
+          VITE_ADMIN_EMAIL: ${{ secrets.VITE_ADMIN_EMAIL }}
+        run: |
+          if [ -n "$VITE_ADMIN_EMAIL" ]; then
+           echo "VITE_ADMIN_EMAIL is set"
+          else
+           echo "VITE_ADMIN_EMAIL is EMPTY"
+          fi
       - name: Build (Vite)
         working-directory: wtflex-react
         env:

@@ -33,6 +33,7 @@ const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
+console.log('ADMIN_EMAIL:', ADMIN_EMAIL);
 const EMAIL_CONFIGURED = !!(SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY);
 
 async function deliverOTP(email, otp, name = '') {

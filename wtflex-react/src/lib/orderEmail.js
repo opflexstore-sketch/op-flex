@@ -6,6 +6,7 @@ const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_ORDER_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
+console.log('ADMIN_EMAIL:', ADMIN_EMAIL);
 
 const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
 
