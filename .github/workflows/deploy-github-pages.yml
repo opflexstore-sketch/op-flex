@@ -36,6 +36,8 @@ jobs:
         working-directory: wtflex-react
         run: npm run sync
 
+      - name: Log VITE_ADMIN_EMAIL
+        run: echo "VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}"
       - name: Build (Vite)
         working-directory: wtflex-react
         env:
