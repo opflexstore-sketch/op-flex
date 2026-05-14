@@ -1,8 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../CartContext.jsx';
 import { useAuth } from '../AuthContext.jsx';
 import OpLogo from './OpLogo.jsx';
+
+// Smooth-scrolls to a section by id; if we're not on the home page, route
+// home first and scroll once it's mounted.
+function useGoToSection() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  return (id) => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: id } });
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -11,6 +26,20 @@ export default function Header() {
   const userMenuRef = useRef(null);
   const { totalQty, setOpen } = useCart();
   const { user, signOut } = useAuth();
+  const goToSection = useGoToSection();
+
+  const closeDrawer = () => setDrawerOpen(false);
+
+  const onSection = (id) => (e) => {
+    e.preventDefault();
+    goToSection(id);
+  };
+
+  const onSectionMobile = (id) => (e) => {
+    e.preventDefault();
+    closeDrawer();
+    goToSection(id);
+  };
 
   // Click outside the user menu closes it.
   useEffect(() => {
@@ -34,6 +63,9 @@ export default function Header() {
     document.body.style.overflow = drawerOpen ? 'hidden' : '';
   }, [drawerOpen]);
 
+  const location = useLocation();
+  useEffect(() => { setDrawerOpen(false); }, [location.pathname]);
+
   return (
     <>
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -45,34 +77,33 @@ export default function Header() {
           >
             <span /><span /><span />
           </button>
-          <a href="#" className="logo">
+          <Link to="/" className="logo">
             <OpLogo size={42} className="logo-svg" />
             <span className="logo-text">OP Flex</span>
-          </a>
+          </Link>
           <nav className="nav-menu">
             <ul>
-              <li><a href="#shop">Shop All</a></li>
-              <li><a href="#new">New Releases</a></li>
+              <li><a href="#categories" onClick={onSection('categories')}>Shop All</a></li>
+              <li><a href="#new" onClick={onSection('new')}>New Releases</a></li>
               <li className="has-drop">
-                <a href="#categories">Topwear ▾</a>
+                <a href="#categories" onClick={onSection('categories')}>Topwear ▾</a>
                 <ul className="drop">
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Hoodies</a></li>
-                  <li><a href="#">Polos</a></li>
+                  <li><Link to="/collections/tshirts">T-Shirts</Link></li>
+                  <li><Link to="/collections/shirts">Shirts</Link></li>
+                  <li><Link to="/collections/hoodies">Hoodies</Link></li>
+                  <li><Link to="/collections/oversized-hoodie">Oversized Hoodies</Link></li>
                 </ul>
               </li>
               <li className="has-drop">
-                <a href="#categories">Bottoms ▾</a>
+                <Link to="/collections/joggers-unisex">Bottoms ▾</Link>
                 <ul className="drop">
-                  <li><a href="#">Joggers</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Cargos</a></li>
-                  <li><a href="#">Parachute Pants</a></li>
+                  <li><Link to="/collections/joggers-unisex">Joggers</Link></li>
+                  <li><Link to="/collections/denim-jeans">Jeans</Link></li>
+                  <li><Link to="/collections/baggy-oversized-denim-jeans">Baggy Jeans</Link></li>
                 </ul>
               </li>
-              <li><a href="#caps">Just Caps</a></li>
-              <li><a href="#look">Shop The Look</a></li>
+              <li><Link to="/collections/caps">Just Caps</Link></li>
+              <li><a href="#look" onClick={onSection('look')}>Shop The Look</a></li>
             </ul>
           </nav>
           <div className="nav-actions">
@@ -128,9 +159,15 @@ export default function Header() {
           <button className="close-btn" onClick={() => setDrawerOpen(false)}>✕</button>
         </div>
         <ul className="drawer-list">
-          {['Shop All','New Releases','Topwear','Bottoms','Just Caps','Shop The Look'].map(label => (
-            <li key={label}><a href="#" onClick={() => setDrawerOpen(false)}>{label}</a></li>
-          ))}
+          <li><a href="#categories" onClick={onSectionMobile('categories')}>Shop All</a></li>
+          <li><a href="#new" onClick={onSectionMobile('new')}>New Releases</a></li>
+          <li><Link to="/collections/tshirts" onClick={closeDrawer}>T-Shirts</Link></li>
+          <li><Link to="/collections/shirts" onClick={closeDrawer}>Shirts</Link></li>
+          <li><Link to="/collections/hoodies" onClick={closeDrawer}>Hoodies</Link></li>
+          <li><Link to="/collections/joggers-unisex" onClick={closeDrawer}>Joggers</Link></li>
+          <li><Link to="/collections/denim-jeans" onClick={closeDrawer}>Jeans</Link></li>
+          <li><Link to="/collections/caps" onClick={closeDrawer}>Just Caps</Link></li>
+          <li><a href="#look" onClick={onSectionMobile('look')}>Shop The Look</a></li>
         </ul>
       </div>
       {drawerOpen && (
